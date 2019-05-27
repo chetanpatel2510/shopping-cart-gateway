@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: shopping-cart-gateway
+
+zuul:
+  routes:
+    shopping-cart-product:
+      path: /shopping-cart-product/**
+      url: http://shopping-cart-product-service/
+      sensitive-headers:
+          
+    
