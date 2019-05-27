@@ -6,7 +6,7 @@ zuul:
   routes:
     shopping-cart-product:
       path: /shopping-cart-product/**
-      url: http://shopping-cart-product-service/
+      url: http://shopping-cart-product-service:8080/
       sensitive-headers:
           
     
