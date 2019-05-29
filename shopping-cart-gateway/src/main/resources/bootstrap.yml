@@ -1,3 +1,5 @@
+server:
+  port: 9001
 spring:
   application:
     name: shopping-cart-gateway
@@ -7,6 +9,21 @@ zuul:
     shopping-cart-product:
       path: /shopping-cart-product/**
       url: http://shopping-cart-product-service:8080/
+#      url: http://localhost:9009/
+      sensitive-headers:
+        
+    shopping-cart-security:
+      path: /shopping-cart-security/**
+      url: http://shopping-cart-security-service:8080/
+#      url: http://localhost:9000/
       sensitive-headers:
           
+
+security:
+  jwt:
+    public-key: classpath:public.txt
+        
+logging:
+  level:
+    org.springframework.security: DEBUG                  
     
