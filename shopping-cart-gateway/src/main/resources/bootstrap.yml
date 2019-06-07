@@ -7,7 +7,7 @@ spring:
   cloud:
     config:
       override-system-properties: false
-      profile: ${spring.active.profile:local}
+      profile: ${spring.active.profile:dev}
       uri:
       - http://shopping-cart-config-service:8080/
       
