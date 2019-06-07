@@ -1,27 +1,32 @@
-server:
-  port: 9001
 spring:
   application:
     name: shopping-cart-gateway
-
+  profiles: # Enable active profiles (It is list of profiles)
+    active:
+      - ${spring.active.profile:local}
+  cloud:
+    config:
+      override-system-properties: false
+      profile: ${spring.active.profile:local}
+      uri:
+      - http://shopping-cart-config-service:8080/
+      
 zuul:
   routes:
     shopping-cart-product:
+      sensitive-headers:
       path: /shopping-cart-product/**
       url: http://shopping-cart-product-service:8080/
-#      url: http://localhost:9009/
+      
+    shopping-cart-customer:
       sensitive-headers:
-        
-    shopping-cart-security:
-      path: /shopping-cart-security/**
-      url: http://shopping-cart-security-service:8080/
-#      url: http://localhost:9000/
+      path: /shopping-cart-customer/**
+      url: http://shopping-cart-customer-service:8080/  
+      
+    shopping-cart-order:
       sensitive-headers:
-          
-
-security:
-  jwt:
-    public-key: classpath:public.txt
+      path: /shopping-cart-order/**
+      url: http://shopping-cart-order-service:8080/  
         
 logging:
   level:
