@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+    name: shopping-cart-gateway-rc
+spec:
+    replicas: 2
+    selector:
+        app: shopping-cart-gateway
+    template:
+        metadata:
+            labels:
+                app: shopping-cart-gateway
+        spec:
+            containers:
+            - name: shopping-cart-gateway
+              image: techiechetan/shopping-cart-gateway:latest
+              env:
+              - name: spring.active.profile
+                value: {{env}}
+              ports:
+              - containerPort: 8080
